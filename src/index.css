@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-nature-50: #f4f7f4;
+  --color-nature-100: #e3ebe3;
+  --color-nature-600: #2d6a4f;
+  --color-nature-700: #1b4332;
+  --color-nature-800: #081c15;
+
+  --color-earth-100: #fdfbf7;
+  --color-earth-200: #f4ede2;
+  --color-earth-600: #b08968;
+}
