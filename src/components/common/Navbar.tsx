@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, PawPrint } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const NAV_LINKS = [
     { name: 'Adoptions', href: '#adoptions' },

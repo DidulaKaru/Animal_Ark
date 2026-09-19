@@ -1,5 +1,5 @@
 import React from 'react';
-import { PawPrint, MessageCircle, Phone, MapPin } from 'lucide-react';
+import { MessageCircle, Phone, MapPin } from 'lucide-react';
 
 const WHATSAPP_NUMBER = '94768624268';
 const INSTAGRAM_URL = 'https://www.instagram.com/animalark_uop/';
