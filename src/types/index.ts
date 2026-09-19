@@ -3,6 +3,20 @@
   SANITY UTILITY TYPES
   ---------------------------------------------------------------------------
 */
+export type SlugValue = string | { current: string };
+
+export interface SanityImageObject {
+    _type?: 'image';
+    asset: {
+        _ref: string;
+        _type?: 'reference';
+        url?: string;
+    };
+    hotspot?: object;
+    crop?: object;
+}
+
+export type ImageSource = SanityImageObject | string;
 
 export interface SanitySlug {
     _type: 'slug';
@@ -89,6 +103,7 @@ export interface AdoptionPet {
     healthDetails: string[];
     photos: SanityImage[];
     story: string;
+    contactNumber?: string;
 }
 
 /*
@@ -100,4 +115,6 @@ export interface NewsUpdate {
     date: string; // YYYY-MM-DD date string
     snippet: string;
     linkUrl?: string; // Optional external URL
+    fullDetails?: string;    // In-depth description for the on-site dialog
+    location?: string;       // e.g. "Peradeniya Campus, Near Canteen"
 }

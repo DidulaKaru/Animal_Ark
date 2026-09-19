@@ -31,8 +31,9 @@ export const PetCard: React.FC<PetCardProps> = ({ pet }) => {
     const imageUrl = resolveImageUrl(primaryImage);
 
     // Section 5.3: WhatsApp Adoption Pipeline Logic
+    const targetPhone = pet.contactNumber?.replace(/[^0-9]/g, '') || WHATSAPP_PHONE_NUMBER;
     const whatsappMessage = `I am interested in adopting ${pet.name} (Ref: ${pet._id}). Is he/she still available?`;
-    const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(whatsappMessage)}`;
 
     // Determine status badge styling based on the pet's current status
     const statusStyles = {

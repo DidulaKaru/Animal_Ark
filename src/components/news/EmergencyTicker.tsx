@@ -4,9 +4,10 @@ import type { NewsUpdate } from '../../types';
 
 interface EmergencyTickerProps {
     news?: NewsUpdate[];
+    onSelectNews?: (item: NewsUpdate) => void;
 }
 
-export const EmergencyTicker: React.FC<EmergencyTickerProps> = ({ news }) => {
+export const EmergencyTicker: React.FC<EmergencyTickerProps> = ({ news, onSelectNews }) => {
     const [isVisible, setIsVisible] = useState(true);
 
     // If no news is provided, the array is empty, or the user dismissed it, render nothing.
@@ -43,7 +44,16 @@ export const EmergencyTicker: React.FC<EmergencyTickerProps> = ({ news }) => {
 
                     {/* Optional Link & Actions */}
                     <div className="flex items-center gap-4 shrink-0">
-                        {activeAlert.linkUrl && (
+                        {onSelectNews ? (
+                            <button
+                                type="button"
+                                onClick={() => onSelectNews(activeAlert)}
+                                className="flex items-center text-sm font-bold text-amber-700 hover:text-amber-800 transition-colors group cursor-pointer focus:outline-none focus:underline"
+                            >
+                                Read more
+                                <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform" />
+                            </button>
+                        ) : activeAlert.linkUrl ? (
                             <a
                                 href={activeAlert.linkUrl}
                                 target="_blank"
@@ -53,7 +63,7 @@ export const EmergencyTicker: React.FC<EmergencyTickerProps> = ({ news }) => {
                                 Read more
                                 <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform" />
                             </a>
-                        )}
+                        ) : null}
 
                         {/* Dismiss Button */}
                         <button
