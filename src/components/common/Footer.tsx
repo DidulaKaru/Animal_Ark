@@ -34,12 +34,12 @@ export const Footer: React.FC = () => {
                         <div className="space-y-4">
                             <div className="flex items-center gap-2.5">
                                 <img
-                                    src="/favicon.png"
+                                    src={`${import.meta.env.BASE_URL}favicon.png`}
                                     alt="Animal Ark Emblem"
                                     className="h-9 w-auto object-contain"
                                 />
                                 <img
-                                    src="/logo.png"
+                                    src={`${import.meta.env.BASE_URL}logo.png`}
                                     alt="Animal Ark"
                                     className="h-6 w-auto object-contain"
                                 />
@@ -148,6 +148,6 @@ export const Footer: React.FC = () => {
                     </p>
                 </div>
             </div>
-        </footer>
+        </footer >
     );
 };

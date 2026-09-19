@@ -23,12 +23,12 @@ export const Navbar: React.FC = () => {
                     <div className="flex-shrink-0 flex items-center">
                         <a href="#" className="flex items-center gap-2.5 group">
                             <img
-                                src="/favicon.png"
+                                src={`${import.meta.env.BASE_URL}favicon.png`}
                                 alt="Animal Ark Emblem"
                                 className="h-9 w-auto object-contain transition-transform group-hover:scale-105"
                             />
                             <img
-                                src="/logo.png"
+                                src={`${import.meta.env.BASE_URL}logo.png`}
                                 alt="Animal Ark"
                                 className="h-6 sm:h-7 w-auto object-contain"
                             />
