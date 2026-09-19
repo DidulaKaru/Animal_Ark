@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AlertCircle, ArrowRight, X } from 'lucide-react';
 import type { NewsUpdate } from '../../types';
 
@@ -7,77 +7,59 @@ interface EmergencyTickerProps {
     onSelectNews?: (item: NewsUpdate) => void;
 }
 
-export const EmergencyTicker: React.FC<EmergencyTickerProps> = ({ news, onSelectNews }) => {
-    const [isVisible, setIsVisible] = useState(true);
+export function EmergencyTicker({ news, onSelectNews }: EmergencyTickerProps) {
+    const [isDismissed, setIsDismissed] = useState(false);
 
-    // If no news is provided, the array is empty, or the user dismissed it, render nothing.
-    if (!news || news.length === 0 || !isVisible) {
+    if (isDismissed || !news || news.length === 0) {
         return null;
     }
 
-    // Display the most recent/urgent update
     const activeAlert = news[0];
 
     return (
-        <div
-            role="alert"
-            className="bg-amber-50 border-b border-amber-200 relative transition-all duration-300 ease-in-out"
+        <aside
+            aria-label="Emergency Announcement"
+            className="bg-amber-50 border-b border-amber-200 text-amber-950 px-4 py-2.5 sm:py-2"
         >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-                <div className="flex items-center justify-between flex-wrap gap-3">
+            <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
 
-                    {/* Alert Content */}
-                    <div className="flex items-center flex-1 min-w-0 gap-3">
-                        <span className="flex p-1 rounded-lg bg-amber-100">
-                            <AlertCircle className="w-5 h-5 text-amber-600" aria-hidden="true" />
+                {/* Left Side: Badge + Content */}
+                <div className="flex items-start sm:items-center gap-2.5 min-w-0 flex-1">
+                    <div className="flex items-center gap-2 shrink-0 pt-0.5 sm:pt-0">
+                        <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" aria-hidden="true" />
+                        <span className="bg-amber-600 text-white text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-xs">
+                            Urgent
                         </span>
-
-                        <div className="flex flex-wrap items-center gap-2 text-sm font-medium text-amber-900">
-                            <span className="px-2 py-0.5 rounded text-xs font-bold bg-amber-600 text-white uppercase tracking-wider shadow-sm">
-                                Urgent
-                            </span>
-                            <span className="truncate">
-                                {activeAlert.snippet}
-                            </span>
-                        </div>
                     </div>
 
-                    {/* Optional Link & Actions */}
-                    <div className="flex items-center gap-4 shrink-0">
-                        {onSelectNews ? (
+                    <div className="text-xs sm:text-sm font-medium leading-snug flex-1">
+                        <span className="text-amber-900">{activeAlert.snippet}</span>
+                        {onSelectNews && (
                             <button
                                 type="button"
                                 onClick={() => onSelectNews(activeAlert)}
-                                className="flex items-center text-sm font-bold text-amber-700 hover:text-amber-800 transition-colors group cursor-pointer focus:outline-none focus:underline"
+                                className="inline-flex items-center gap-1 font-semibold text-amber-700 hover:text-amber-900 ml-2 underline underline-offset-2 cursor-pointer transition-colors"
                             >
-                                Read more
-                                <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform" />
+                                <span>Read details</span>
+                                <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                             </button>
-                        ) : activeAlert.linkUrl ? (
-                            <a
-                                href={activeAlert.linkUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center text-sm font-bold text-amber-700 hover:text-amber-800 transition-colors group"
-                            >
-                                Read more
-                                <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform" />
-                            </a>
-                        ) : null}
-
-                        {/* Dismiss Button */}
-                        <button
-                            type="button"
-                            onClick={() => setIsVisible(false)}
-                            className="flex items-center justify-center w-8 h-8 rounded-md hover:bg-amber-100 text-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-colors"
-                            aria-label="Dismiss alert"
-                        >
-                            <X className="w-5 h-5" />
-                        </button>
+                        )}
                     </div>
-
                 </div>
+
+                {/* Right Side: Dismiss Button */}
+                <div className="absolute top-2.5 right-3 sm:static sm:flex sm:items-center shrink-0">
+                    <button
+                        type="button"
+                        onClick={() => setIsDismissed(true)}
+                        aria-label="Dismiss alert"
+                        className="p-1 rounded-md text-amber-700 hover:text-amber-950 hover:bg-amber-100 transition-colors cursor-pointer"
+                    >
+                        <X className="w-4 h-4" />
+                    </button>
+                </div>
+
             </div>
-        </div>
+        </aside>
     );
-};
+}

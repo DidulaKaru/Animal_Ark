@@ -31,20 +31,24 @@ export const Footer: React.FC = () => {
 
                     {/* Column 1: Brand & Mission */}
                     <div className="flex flex-col">
-                        <a
-                            href="#"
-                            className="flex items-center gap-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#ff7b00] rounded-lg w-fit"
-                            aria-label="Animal Ark Home"
-                        >
-                            <span className="text-2xl font-extrabold text-nature-700 tracking-tight">
-                                Animal Ark
-                            </span>
-                            <PawPrint
-                                className="w-6 h-6 text-[#ff7b00] transform -rotate-12"
-                                strokeWidth={2.5}
-                                aria-hidden="true"
-                            />
-                        </a>
+                        <div className="space-y-4">
+                            <div className="flex items-center gap-2.5">
+                                <img
+                                    src="/favicon.png"
+                                    alt="Animal Ark Emblem"
+                                    className="h-9 w-auto object-contain"
+                                />
+                                <img
+                                    src="/logo.png"
+                                    alt="Animal Ark"
+                                    className="h-6 w-auto object-contain"
+                                />
+                            </div>
+                            <p className="text-sm text-nature-600 max-w-sm leading-relaxed">
+                                A dedicated volunteer network providing rescue, rehabilitation, and rehoming services
+                                for stray and injured animals across the Peradeniya community.
+                            </p>
+                        </div>
                         <p className="text-sm leading-relaxed text-nature-400">
                             A dedicated volunteer network providing rescue, rehabilitation, and rehoming services for stray and injured animals across the Peradeniya community.
                         </p>

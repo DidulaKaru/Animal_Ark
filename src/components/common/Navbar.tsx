@@ -21,19 +21,16 @@ export const Navbar: React.FC = () => {
 
                     {/* Logo & Branding */}
                     <div className="flex-shrink-0 flex items-center">
-                        <a
-                            href="#"
-                            onClick={closeMenu}
-                            className="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-nature-500 rounded-lg"
-                            aria-label="Animal Ark Home"
-                        >
-                            <span className="text-2xl font-extrabold text-nature-900 tracking-tight">
-                                Animal Ark
-                            </span>
-                            <PawPrint
-                                className="w-6 h-6 text-[#ff7b00] transform -rotate-12"
-                                strokeWidth={2.5}
-                                aria-hidden="true"
+                        <a href="#" className="flex items-center gap-2.5 group">
+                            <img
+                                src="/favicon.png"
+                                alt="Animal Ark Emblem"
+                                className="h-9 w-auto object-contain transition-transform group-hover:scale-105"
+                            />
+                            <img
+                                src="/logo.png"
+                                alt="Animal Ark"
+                                className="h-6 sm:h-7 w-auto object-contain"
                             />
                         </a>
                     </div>

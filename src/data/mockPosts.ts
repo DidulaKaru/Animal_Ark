@@ -13,6 +13,22 @@ const createMockImage = (unsplashUrl: string): SanityImage => ({
     },
 });
 
+// Helper to generate fully conforming Sanity Portable Text blocks
+const createMockBlock = (text: string, key: string) => ({
+    _key: key,
+    _type: 'block' as const,
+    style: 'normal',
+    markDefs: [],
+    children: [
+        {
+            _key: `${key}-span`,
+            _type: 'span' as const,
+            text,
+            marks: [],
+        },
+    ],
+});
+
 export const mockAuthors: Record<string, Author> = {
     sarath: {
         _id: 'author-1',
@@ -39,7 +55,20 @@ export const mockPosts: BlogPost[] = [
         author: mockAuthors.amali,
         mainImage: createMockImage('https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80'),
         excerpt: 'Rex was found near the engineering faculty canteen with a fractured hind leg. Here is how community donations funded his orthopedic surgery and recovery.',
-        body: [],
+        body: [
+            createMockBlock(
+                'Rex was discovered by students near the University of Peradeniya engineering canteen during heavy monsoon rains. He was unable to bear weight on his left hind leg and showed severe signs of dehydration.',
+                'block-1'
+            ),
+            createMockBlock(
+                'Thanks to swift mobilization from our student volunteer network and financial aid channeled through our emergency fund, Rex was admitted to the Peradeniya Veterinary Teaching Hospital. X-rays confirmed a femoral fracture requiring orthopedic pin fixation.',
+                'block-2'
+            ),
+            createMockBlock(
+                'Following a successful surgery and four weeks of cage rest with physiotherapy, Rex made a complete recovery. Today, he lives with a loving foster-turned-permanent family in Kandy!',
+                'block-3'
+            ),
+        ],
     },
     {
         _id: 'post-2',
@@ -49,6 +78,23 @@ export const mockPosts: BlogPost[] = [
         author: mockAuthors.sarath,
         mainImage: createMockImage('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80'),
         excerpt: 'An overview of our August campus spay-and-neuter drive, detailing veterinary protocols and why long-term humane population management works.',
-        body: [],
+        body: [
+            createMockBlock(
+                'An overview of our August campus spay-and-neuter drive, detailing veterinary protocols and why long-term humane population management works.',
+                'block-1'
+            ),
+            createMockBlock(
+                'These are not just stray animals; they are integral members of our campus community who experience hunger, injury, and isolation. Humane population management through sterilization directly reduces animal suffering while maintaining a balanced ecosystem.',
+                'block-2'
+            ),
+            createMockBlock(
+                'Our approach emphasizes sterilization, vaccination, and community education to prevent overpopulation at its source. Learn more about how you can support sustainable animal welfare on campus.',
+                'block-3'
+            ),
+            createMockBlock(
+                'Looking ahead, Animal Ark plans to expand its outreach to nearby communities, providing veterinary care and education programs that promote responsible pet ownership and compassionate coexistence with animals. Your continued support makes this long-term vision possible.',
+                'block-4'
+            ),
+        ],
     },
 ];
