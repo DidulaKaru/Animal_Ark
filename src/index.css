@@ -10,4 +10,11 @@
   --color-earth-100: #fdfbf7;
   --color-earth-200: #f4ede2;
   --color-earth-600: #b08968;
+
+  --color-brand-orange: #ff7b00;
+  --color-brand-dark: #121212;
+}
+
+html {
+  scroll-behavior: smooth;
 }
